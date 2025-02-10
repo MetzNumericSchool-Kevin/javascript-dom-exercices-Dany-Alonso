@@ -23,3 +23,13 @@ document.getElementById("description_boutique").appendChild(paragrapheInstructio
 const removePacotille = document.querySelector("#blague_de_roger_le_sorcier");
 // console.log(removePacotille.textContent);
 removePacotille.remove();
+
+/**
+ * Exercice 4 - Archibald n'est pas là, appelons le !
+ */
+
+const callArchibald = document.querySelector("#call_archibald");
+callArchibald.addEventListener("click", alertCallArchibald);
+function alertCallArchibald(){
+    alert(`🧙‍♂️ J'arrive, j'arrive Aventurier !`);
+}
