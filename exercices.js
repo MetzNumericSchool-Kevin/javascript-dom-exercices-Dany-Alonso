@@ -15,3 +15,11 @@ paragrapheInstruction.textContent= `Pour cela, il vous suffit de cliquer sur une
 document.getElementById("description_boutique").appendChild(paragrapheInstruction);
 // console.log(paragrapheDeBienvenue.textContent);
 // console.log(paragrapheInstruction.textContent);
+
+/**
+ * Exercice 3 - Roger, enfoiré !
+ */
+
+const removePacotille = document.querySelector("#blague_de_roger_le_sorcier");
+// console.log(removePacotille.textContent);
+removePacotille.remove();
