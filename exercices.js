@@ -100,11 +100,15 @@ const potions = [
  * @param {number} potions[].prix - Prix de la potion.
  * @param {string} potions[].description - Description de la potion.
  */
-potions.forEach((potion) => {
-  /** @type {HTMLElement} Liste où ajouter les cartes de potions */
-  const listPotions = document.querySelector("#liste_potions");
+/**
+ * @type {HTMLElement} Liste où ajouter les cartes de potions
+ */
+const listPotions = document.querySelector("#liste_potions");
 
-  /** @type {DocumentFragment} Clone du template contenant la structure de la potion */
+potions.forEach((potion) => {
+  /**
+   * @type {DocumentFragment} Clone du template contenant la structure de la potion
+   */
   const templatePotionClone = document
     .querySelector("#template_potion")
     .content.cloneNode(true);
@@ -117,4 +121,56 @@ potions.forEach((potion) => {
 
   // Ajoute le clone modifié dans la liste des potions
   listPotions.appendChild(templatePotionClone);
+});
+
+/**
+ * Exercice 7 - Plus de potions, nous avons besoin de plus de potions !
+ */
+
+/**
+ * Ajoute une nouvelle potion à la boutique en clonant un template HTML.
+ *
+ * @param {string} nom - Nom de la potion.
+ * @param {string} description - Description de la potion.
+ * @param {number} prix - Prix de la potion.
+ */
+function addNewPotion(nom, description, prix) {
+  /** @type {DocumentFragment} Clone du template contenant la structure de la potion */
+  const templatePotionClone = document
+    .querySelector("#template_potion")
+    .content.cloneNode(true);
+
+  // Remplit les champs du template avec les données de la potion
+  templatePotionClone.querySelector(".nom_potion").textContent = nom;
+  templatePotionClone.querySelector(".prix_potion").textContent = prix;
+  templatePotionClone.querySelector(".description_potion").textContent =
+    description;
+
+  /** @type {HTMLElement} Liste où les potions sont ajoutées */
+  const listPotions = document.querySelector("#liste_potions");
+  listPotions.appendChild(templatePotionClone);
+}
+
+/** @type {HTMLFormElement} Formulaire d'ajout de potion */
+const formAddPotion = document.querySelector("form");
+
+/**
+ * Écoute l'événement de soumission du formulaire et ajoute une nouvelle potion.
+ *
+ * @param {SubmitEvent} event - L'événement de soumission du formulaire.
+ */
+formAddPotion.addEventListener("submit", (event) => {
+  event.preventDefault(); // Empêche le rechargement de la page
+
+  /** @type {FormData} Contient les données du formulaire */
+  const formData = new FormData(formAddPotion);
+
+  /** @type {string} nomNewPotion - Récupération du nom */
+  const nomNewPotion = formData.get("nom");
+  /** @type {string} descNewPotion - Récupération de la description */
+  const descNewPotion = formData.get("description");
+  /** @type {number} priceNewPotion - Récupération du prix (converti en nombre) */
+  const priceNewPotion = Number(formData.get("prix"));
+
+  addNewPotion(nomNewPotion, descNewPotion, priceNewPotion);
 });
